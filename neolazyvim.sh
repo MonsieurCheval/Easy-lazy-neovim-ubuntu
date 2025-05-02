@@ -2,8 +2,9 @@
 
 set -e
 
-echo "=== Updating package lists ==="
+echo "=== Updating/Upgrading package lists ==="
 sudo apt update
+sudo apt upgrade -y
 
 echo "=== Installing essential dependencies ==="
 sudo apt install -y \
@@ -11,32 +12,29 @@ sudo apt install -y \
     curl \
     ripgrep \
     fzf \
-    python3 \
-    python3-pip \
     build-essential \
     unzip \
-    ninja-build \
-    gettext \
-    cmake \
     unzip \
-    tmux \
-    libtool \
-    libtool-bin \
-    autoconf \
-    automake \
-    pkg-config \
-    libevent-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    xz-utils \
-    lazygit
+    lazygit \ 
+    fd-find
 
 echo "=== Installing Node.js v22 ==="
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
 
-echo "=== Installing pynvim for Python support ==="
-pip3 install --user pynvim
+
+mkdir temporary
+cd temporary
+
+echo "=== Installing NerdFont==="
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hasklig.zip
+unzip Hasklig.zip
+mkdir -p ~/.local/share/fonts
+mv Hasklig/*.ttf ~/.local/share/fonts
+rm -rf Hasklig
+fc-cache -fv
+
 
 echo "=== Installing latest Neovim v0.11 from source ==="
 # Remove any system-installed neovim
