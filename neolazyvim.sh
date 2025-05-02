@@ -20,8 +20,8 @@ sudo apt install -y \
     build-essential \
     unzip \
     fd-find \
-    fontconfig \ 
     cmake \
+    fontconfig
 
 
 
@@ -77,7 +77,7 @@ git checkout stable  # This should track v0.11 if tagged as stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 cd ..
-rm * -r
+sudo rm * -r
 
 
 
@@ -90,6 +90,8 @@ tar -zxf lua-${LUA_VERSION}.tar.gz
 cd lua-${LUA_VERSION}
 make all test
 sudo make install
+cd ..
+sudo rm * -r
 
 
 
@@ -103,6 +105,8 @@ cd luarocks-${LUAROCK_VERSION}
 ./configure --with-lua-include=/usr/local/include
 make
 sudo make install
+cd ..
+sudo rm * -r
 
 
 
@@ -117,18 +121,5 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
 
-
-
-
-
-
-
-echo "=== Installing LazyVim config ==="
-if [ -d "$HOME/.config/nvim" ]; then
-  echo "⚠️  ~/.config/nvim already exists. Skipping LazyVim clone."
-else
-  git clone https://github.com/LazyVim/starter ~/.config/nvim
-  rm -rf ~/.config/nvim/.git
-fi
 
 echo "✅ Done! Open Neovim with 'nvim' to finish LazyVim plugin installation."
