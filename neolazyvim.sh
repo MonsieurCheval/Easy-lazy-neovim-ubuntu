@@ -65,8 +65,7 @@ echo "=== Installing NerdFont==="
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hasklig.zip
 unzip Hasklig.zip
 mkdir -p ~/.local/share/fonts
-mv Hasklig/*.ttf ~/.local/share/fonts
-rm -rf Hasklig
+mv *.otf ~/.local/share/fonts
 fc-cache -fv
 rm * -R
 
@@ -75,16 +74,23 @@ rm * -R
 
 
 echo "=== Installing latest Neovim v0.11 from source ==="
-sudo apt remove -y neovim || true # Remove any system-installed neovim
-rm -rf neovim # Clone Neovim repo and build it
-git clone https://github.com/neovim/neovim.git
-cd neovim
-git checkout stable  # This should track v0.11 if tagged as stable
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
-cd ..
-sudo rm * -r
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo tar -C /usr/local/bin -xzf nvim-linux-x86_64.tar.gz
 
+
+
+
+
+#sudo apt remove -y neovim || true # Remove any system-installed neovim
+#rm -rf neovim # Clone Neovim repo and build it
+#git clone https://github.com/neovim/neovim.git
+#cd neovim
+#git checkout stable  # This should track v0.11 if tagged as stable
+#make CMAKE_BUILD_TYPE=RelWithDebInfo
+#sudo make install
+#cd ..
+#sudo rm * -r
+#
 
 
 
@@ -116,28 +122,14 @@ sudo rm * -r
 
 
 
-# required
-mv ~/.config/nvim{,.bak}
 
-# optional but recommended
-mv ~/.local/share/nvim{,.bak}
-mv ~/.local/state/nvim{,.bak}
-mv ~/.cache/nvim{,.bak}
+
+
+
+echo "=== Installing Lazyvim ==="
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
-
-
-echo "✅ Done! Open Neovim with 'nvim' to finish LazyVim plugin installation."
-
-
-
-
-
-
-
-
-#
 #  _               _____       __      ________ _      
 # | |        /\   |  __ \     /\ \    / /  ____| |     
 # | |       /  \  | |__) |   /  \ \  / /| |__  | |     
