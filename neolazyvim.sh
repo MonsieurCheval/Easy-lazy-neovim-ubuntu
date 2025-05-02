@@ -1,8 +1,17 @@
 #!/bin/bash
 
 #SETUP
+#  _   ___      _______ __  __ 
+# | \ | \ \    / /_   _|  \/  |
+# |  \| |\ \  / /  | | | \  / |
+# | . ` | \ \/ /   | | | |\/| |
+# | |\  |  \  /   _| |_| |  | |
+# |_| \_|   \/   |_____|_|  |_|
+#                              
+                              
 LUA_VERSION="5.4.7"
 LUAROCK_VERSION="3.11.1"
+USERNAME="tun"
 
 
 set -e
@@ -22,9 +31,6 @@ sudo apt install -y \
     fd-find \
     cmake \
     fontconfig
-
-
-
 
 
 
@@ -123,3 +129,30 @@ rm -rf ~/.config/nvim/.git
 
 
 echo "✅ Done! Open Neovim with 'nvim' to finish LazyVim plugin installation."
+
+
+
+
+
+
+
+
+#
+#  _               _____       __      ________ _      
+# | |        /\   |  __ \     /\ \    / /  ____| |     
+# | |       /  \  | |__) |   /  \ \  / /| |__  | |     
+# | |      / /\ \ |  _  /   / /\ \ \/ / |  __| | |     
+# | |____ / ____ \| | \ \  / ____ \  /  | |____| |____ 
+# |______/_/    \_\_|  \_\/_/    \_\/   |______|______|
+#                                                      
+
+
+# php artisan serve --host 192.168.0.101 --port 8080
+echo "=== Installing essential dependencies ==="
+sudo apt install -y \
+    php8.3 \
+    composer
+
+/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.3)"
+
+source /home/${USERNAME}/.bashrc
