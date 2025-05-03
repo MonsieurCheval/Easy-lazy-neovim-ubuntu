@@ -10,6 +10,3 @@ sudo apt install -y \
 
 /bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.3)"
 
-source /home/tun/.bashrc #USERNAME HERE
-
-

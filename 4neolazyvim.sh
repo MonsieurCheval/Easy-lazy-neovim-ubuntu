@@ -123,3 +123,6 @@ ln -s /home/tun/.config/nvim/lua/ /home/tun/nvi #USERNAME HERE
 
 
 
+source /home/tun/.bashrc #USERNAME HERE
+
+
