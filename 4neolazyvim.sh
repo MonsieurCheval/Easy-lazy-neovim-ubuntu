@@ -94,23 +94,26 @@ sudo rm * -r
 
 
 
-echo "=== Installing NEOVIM ==="
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-echo "export PATH=\"\$PATH:/opt/nvim-linux-x86_64/bin\"" >> /home/tun/.bashrc #USERNAME HERE 
-source /home/tun/.bashrc #USERNAME HERE 
+git clone https://github.com/neovim/neovim.git
+cd neovim
+git checkout master
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+cd ..
+sudo rm * -r
+
+
 
 
 
 echo "=== Installing Lazyvim ==="
 # required
-mv ~/.config/nvim{,.bak}
+#mv ~/.config/nvim{,.bak}
 
 # optional but recommended
-mv ~/.local/share/nvim{,.bak}
-mv ~/.local/state/nvim{,.bak}
-mv ~/.cache/nvim{,.bak}
+#mv ~/.local/share/nvim{,.bak}
+#mv ~/.local/state/nvim{,.bak}
+#mv ~/.cache/nvim{,.bak}
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
@@ -119,10 +122,3 @@ rm -rf ~/.config/nvim/.git
 
 
 ln -s /home/tun/.config/nvim/lua/ /home/tun/nvi #USERNAME HERE
-
-
-
-
-source /home/tun/.bashrc #USERNAME HERE
-
-
