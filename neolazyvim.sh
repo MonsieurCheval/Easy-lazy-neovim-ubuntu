@@ -1,18 +1,18 @@
 #!/bin/bash
 
-#SETUP
-#  _   ___      _______ __  __ 
-# | \ | \ \    / /_   _|  \/  |
-# |  \| |\ \  / /  | | | \  / |
-# | . ` | \ \/ /   | | | |\/| |
-# | |\  |  \  /   _| |_| |  | |
-# |_| \_|   \/   |_____|_|  |_|
-#                              
-                              
-LUA_VERSION="5.4.7"
-LUAROCK_VERSION="3.11.1"
-USERNAME="tun"
 
+#docs
+# lazyvim       https://www.lazyvim.org/
+#lazyvim.nvim   https://github.com/folke/lazy.nvim
+#SETUP NVIM 
+
+
+
+
+
+LUA_VERSION="5.4.7" #LUA HERE
+LUAROCK_VERSION="3.11.1" #LUAROCK HERE
+USERNAME="tun"  #USERNAME HERE
 
 set -e
 
@@ -40,7 +40,6 @@ cd temporary
 
 
 
-
 echo "=== Installing Lazygit ==="
 LAZYGIT_VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep tag_name | cut -d '"' -f 4)
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION#v}_Linux_x86_64.tar.gz"
@@ -49,16 +48,9 @@ sudo install lazygit /usr/local/bin
 rm lazygit lazygit.tar.gz   # Cleanup
 
 
-
-
-
-
 echo "=== Installing Node.js v22 ==="
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt install -y nodejs
-
-
-
 
 
 echo "=== Installing NerdFont==="
@@ -69,28 +61,6 @@ mv *.otf ~/.local/share/fonts
 fc-cache -fv
 rm * -R
 
-
-
-
-
-echo "=== Installing latest Neovim v0.11 from source ==="
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo tar -C /usr/local/bin -xzf nvim-linux-x86_64.tar.gz
-
-
-
-
-
-#sudo apt remove -y neovim || true # Remove any system-installed neovim
-#rm -rf neovim # Clone Neovim repo and build it
-#git clone https://github.com/neovim/neovim.git
-#cd neovim
-#git checkout stable  # This should track v0.11 if tagged as stable
-#make CMAKE_BUILD_TYPE=RelWithDebInfo
-#sudo make install
-#cd ..
-#sudo rm * -r
-#
 
 
 
@@ -124,27 +94,32 @@ sudo rm * -r
 
 
 
+echo "=== Installing NEOVIM ==="
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+echo "export PATH=\"\$PATH:/opt/nvim-linux-x86_64/bin\"" >> /home/tun/.bashrc #USERNAME HERE 
+source /home/tun/.bashrc #USERNAME HERE 
+
 
 
 echo "=== Installing Lazyvim ==="
+# required
+mv ~/.config/nvim{,.bak}
+
+# optional but recommended
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
-#  _               _____       __      ________ _      
-# | |        /\   |  __ \     /\ \    / /  ____| |     
-# | |       /  \  | |__) |   /  \ \  / /| |__  | |     
-# | |      / /\ \ |  _  /   / /\ \ \/ / |  __| | |     
-# | |____ / ____ \| | \ \  / ____ \  /  | |____| |____ 
-# |______/_/    \_\_|  \_\/_/    \_\/   |______|______|
-#                                                      
 
 
-# php artisan serve --host 192.168.0.101 --port 8080
-echo "=== Installing essential dependencies ==="
-sudo apt install -y \
-    php8.3 \
-    composer
 
-/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.3)"
 
-source /home/${USERNAME}/.bashrc
+ln -s /home/tun/.config/nvim/lua/ /home/tun/nvi #USERNAME HERE
+
+
+
+
