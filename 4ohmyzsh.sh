@@ -11,8 +11,8 @@ ZSHRC="$HOME/.zshrc"
 # Check if the file exists
 if [[ -f "$ZSHRC" ]]; then
   # Replace the theme
-  sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="jonathan"/' "$ZSHRC"
-  echo "ZSH_THEME updated to 'jonathan'."
+  sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/' "$ZSHRC"
+  echo "ZSH_THEME updated to 'bira'."
 else
   echo "$ZSHRC not found."
 fi

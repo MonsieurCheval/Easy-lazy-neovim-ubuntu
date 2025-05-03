@@ -1,10 +1,8 @@
 #!/bin/bash
 
 
-#docs
-# lazyvim       https://www.lazyvim.org/
-#lazyvim.nvim   https://github.com/folke/lazy.nvim
-#SETUP NVIM 
+
+# SETUP NVIM 
 
 
 
